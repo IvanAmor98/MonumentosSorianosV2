@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ScrollingActivity"
+    tools:showIn="@layout/activity_scrolling">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/newMonument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="newMonument"
+            android:text="@string/new_monument" />
+
+        <Button
+            android:id="@+id/showMonuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/show_monuments" />
+
+        <Button
+            android:id="@+id/preferences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/preferences" />
+
+        <Button
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="about"
+            android:text="@string/about" />
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/exit" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

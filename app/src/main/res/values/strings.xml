@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Monumentos Sorianos</string>
+    <string name="new_monument">New Monument</string>
+    <string name="show_monuments">Show Monuments</string>
+    <string name="preferences">Preferences</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+
+    <string name="name">Name:</string>
+    <string name="name_placeholder">Monument name</string>
+    <string name="type">Type:</string>
+    <string name="address">Address:</string>
+    <string name="address_placeholder">My address nº1</string>
+    <string name="tel_number">Telephone number:</string>
+    <string name="tel_number_placeholder">901001100</string>
+    <string name="ulr">Url:</string>
+    <string name="ulr_placeholder">http://example.com</string>
+    <string name="comment">Comment:</string>
+    <string name="comment_placeholder">This is a comment</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
