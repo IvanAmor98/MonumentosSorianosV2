@@ -6,17 +6,21 @@
     <string name="preferences">Preferencias</string>
     <string name="about">Acerca De</string>
     <string name="exit">Salir</string>
+    <string name="preview">Vista Previa</string>
+    <string name="save">Guardar</string>
+    <string name="discard">Descartar</string>
+    <string name="listLabel">Lista de monumentos</string>
 
-    <string name="name">Nombre:</string>
+    <string name="name">Nombre: </string>
     <string name="name_placeholder">Monumento</string>
     <string name="type">Tipo:</string>
-    <string name="address">Direccion:</string>
+    <string name="address">Direccion: </string>
     <string name="address_placeholder">Mi direccion nº1</string>
-    <string name="tel_number">Telefono:</string>
+    <string name="tel_number">Telefono: </string>
     <string name="tel_number_placeholder">901001100</string>
-    <string name="ulr">Url:</string>
+    <string name="ulr">Url: </string>
     <string name="ulr_placeholder">http://ejemplo.com</string>
-    <string name="comment">Comentario:</string>
+    <string name="comment">Comentario: </string>
     <string name="comment_placeholder">Esto es un comentario</string>
 
     <string name="action_settings">Opciones</string>

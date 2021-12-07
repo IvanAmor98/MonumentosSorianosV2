@@ -73,6 +73,11 @@ public class ScrollingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void showMonuments(View v) {
+        Intent intent = new Intent(this, MonumentListActivity.class);
+        startActivity(intent);
+    }
+
     public void exit(View v) {
         finish();
     }

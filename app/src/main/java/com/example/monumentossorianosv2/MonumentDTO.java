@@ -10,6 +10,7 @@ public class MonumentDTO implements Serializable {
         Arquitectonico
     }
 
+    private int id;
     private String name;
     private MonumentType type;
     private String address;
@@ -24,6 +25,20 @@ public class MonumentDTO implements Serializable {
         this.phone = phone;
         this.url = url;
         this.comment = comment;
+    }
+
+    public MonumentDTO(int id, String name, MonumentType type, String address, int phone, String url, String comment) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.address = address;
+        this.phone = phone;
+        this.url = url;
+        this.comment = comment;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

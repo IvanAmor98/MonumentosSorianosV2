@@ -17,7 +17,12 @@ public class PreviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preview);
 
         monument = (MonumentDTO) getIntent().getSerializableExtra("monument");
-        ((TextView)findViewById(R.id.savedMonumentName)).setText(monument.getName());
+        ((TextView)findViewById(R.id.newName)).setText(monument.getName());
+        ((TextView)findViewById(R.id.newType)).setText(monument.getType().toString());
+        ((TextView)findViewById(R.id.newAddress)).setText(monument.getAddress());
+        ((TextView)findViewById(R.id.newPhone)).setText(String.valueOf(monument.getPhone()));
+        ((TextView)findViewById(R.id.newUrl)).setText(monument.getUrl());
+        ((TextView)findViewById(R.id.newComment)).setText(monument.getComment());
     }
 
     public void save(View v) {

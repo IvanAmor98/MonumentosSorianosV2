@@ -6,10 +6,12 @@
         <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.1" />
         <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout-w936dp/content_scrolling.xml" value="0.1" />
         <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/about.xml" value="0.1" />
-        <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/activity_preview.xml" value="0.1" />
+        <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/activity_monument_list.xml" value="0.209375" />
+        <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/activity_preview.xml" value="0.33" />
         <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/activity_scrolling.xml" value="0.1" />
         <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/content_scrolling.xml" value="0.21067415730337077" />
         <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/create_monument.xml" value="0.5" />
+        <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/layout/monument_list_row.xml" value="0.209375" />
         <entry key="..\:/Users/yvana/AndroidStudioProjects/MonumentosSorianosV2/app/src/main/res/menu/menu_scrolling.xml" value="0.371875" />
       </map>
     </option>
