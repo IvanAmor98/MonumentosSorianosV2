@@ -1,18 +1,20 @@
 package com.example.monumentossorianosv2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<MonumentDTO> {
 
-    private int resourceLayout;
-    private Context mContext;
+    private final int resourceLayout;
+    private final Context mContext;
 
     public ListAdapter(Context context, int resource, List<MonumentDTO> items) {
         super(context, resource, items);
@@ -34,9 +36,10 @@ public class ListAdapter extends ArrayAdapter<MonumentDTO> {
         MonumentDTO monument = getItem(position);
 
         if (monument != null) {
-            TextView name = (TextView) v.findViewById(R.id.monumentName);
-            TextView type = (TextView) v.findViewById(R.id.monumentType);
-            TextView address = (TextView) v.findViewById(R.id.monumentAddress);
+            TextView name = v.findViewById(R.id.monumentName);
+            TextView type = v.findViewById(R.id.monumentType);
+            TextView address = v.findViewById(R.id.monumentAddress);
+            ImageView image = v.findViewById(R.id.imageView2);
 
             if (name != null) {
                 name.setText(monument.getName());
@@ -48,6 +51,15 @@ public class ListAdapter extends ArrayAdapter<MonumentDTO> {
 
             if (address != null) {
                 address.setText(monument.getAddress());
+            }
+
+            if (image != null) {
+                image.setImageBitmap(monument.getImage());
+                image.setOnClickListener(v1 -> {
+                    Intent intent = new Intent(mContext, ImageActivity.class);
+                    intent.putExtra("monument", monument);
+                    mContext.startActivity(intent);
+                });
             }
         }
 
