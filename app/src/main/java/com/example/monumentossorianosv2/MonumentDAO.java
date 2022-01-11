@@ -68,9 +68,7 @@ public class MonumentDAO extends SQLiteOpenHelper{
     }
 
     public ArrayList<MonumentDTO> listMonuments() {
-        SQLiteDatabase db = null;
-        try {
-            db = this.getReadableDatabase();
+        try (SQLiteDatabase db = this.getReadableDatabase()) {
 
             ArrayList<MonumentDTO> monumentList = new ArrayList<>();
 
@@ -101,8 +99,6 @@ public class MonumentDAO extends SQLiteOpenHelper{
         } catch (Exception ex) {
             Log.e("MonumentDAO", "ERROR: " + ex.getMessage());
             return null;
-        } finally {
-            db.close();
         }
     }
 

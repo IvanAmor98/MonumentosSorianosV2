@@ -15,22 +15,22 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 public class NewMonumentActivity extends AppCompatActivity {
 
-    private String imageDir;
     private Bitmap bitmap;
+    private Bitmap videoBitmap;
     private File image;
+    private File video;
     private final ActivityResultLauncher<Intent> activityResultLauncherTake = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -40,6 +40,16 @@ public class NewMonumentActivity extends AppCompatActivity {
                     bitmap = ThumbnailUtils.extractThumbnail(
                             BitmapFactory.decodeFile(image.getAbsolutePath()),
                             80, 80);
+                }
+            });
+    private final ActivityResultLauncher<Intent> activityResultLauncherTakeVideo = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    //Intent data = result.getData();
+                    //this.bitmap = (Bitmap) data.getExtras().get("data");
+                    videoBitmap = ThumbnailUtils.createVideoThumbnail(
+                            video.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
                 }
             });
     private final ActivityResultLauncher<Intent> activityResultLauncherLoad = registerForActivityResult(
@@ -69,6 +79,48 @@ public class NewMonumentActivity extends AppCompatActivity {
                             try {
                                 out.close();
                                 in.close();
+                            }
+                            catch ( IOException e ) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+    private final ActivityResultLauncher<Intent> activityResultLauncherLoadVideo = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Intent data = result.getData();
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    InputStream in = null;
+                    try {
+                        in = this.getContentResolver().openInputStream(data.getData());
+                        FileOutputStream out = new FileOutputStream(video);
+                        try {
+                            byte[] buf = new byte[1024*4];
+                            int len;
+                            while((len=in.read(buf))>0){
+                                out.write(buf,0,len);
+                            }
+                            videoBitmap = ThumbnailUtils.createVideoThumbnail(
+                                    video.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        finally {
+                            try {
+                                out.close();
+                                in.close();
+                                //Para reproducir el video
+                                /*
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getAbsolutePath()));
+                                intent.setDataAndType(Uri.parse(video.getAbsolutePath()), "video/3gp");
+                                startActivity(intent);
+                                 */
                             }
                             catch ( IOException e ) {
                                 e.printStackTrace();
@@ -124,12 +176,35 @@ public class NewMonumentActivity extends AppCompatActivity {
                 "com.example.android.fileprovider",
                 image);
 
-
-        this.imageDir = image.getAbsolutePath();
-
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         activityResultLauncherTake.launch(takePictureIntent);
+    }
+
+    public void takeVideo(View v) throws IOException {
+        String monumentName = ((TextView)findViewById(R.id.nameInput)).getText().toString();
+        if (monumentName.equals("")) {
+            Toast.makeText(this, "ERROR: Debe introducir antes un nombre", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        File movieDir = getExternalFilesDir(Environment.DIRECTORY_MOVIES);
+        if (!movieDir.exists())
+            movieDir.mkdirs();
+
+        video = File.createTempFile(
+                monumentName,
+                ".3gp",
+                movieDir
+        );
+
+        Uri videoURI = FileProvider.getUriForFile(this,
+                "com.example.android.fileprovider",
+                video);
+
+        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, videoURI);
+        activityResultLauncherTakeVideo.launch(takeVideoIntent);
     }
 
     public void loadPicture(View v) throws IOException {
@@ -153,5 +228,28 @@ public class NewMonumentActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         activityResultLauncherLoad.launch(Intent.createChooser(intent, "Select Picture"));
+    }
+
+    public void loadVideo(View v) throws IOException {
+        String monumentName = ((TextView)findViewById(R.id.nameInput)).getText().toString();
+        if (monumentName.equals("")) {
+            Toast.makeText(this, "ERROR: Debe introducir antes un nombre", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        File movieDir = getExternalFilesDir(Environment.DIRECTORY_MOVIES);
+        if (!movieDir.exists())
+            movieDir.mkdirs();
+
+        video = File.createTempFile(
+                monumentName,
+                ".3gp",
+                movieDir
+        );
+
+        Intent intent = new Intent();
+        intent.setType("video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        activityResultLauncherLoadVideo.launch(Intent.createChooser(intent, "Select Video"));
     }
 }

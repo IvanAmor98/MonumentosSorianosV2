@@ -146,4 +146,25 @@
         android:text="Load photo"
         app:layout_constraintEnd_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="takeVideo"
+        android:text="Take Video"
+        app:layout_constraintEnd_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="loadVideo"
+        android:text="Load Video"
+        app:layout_constraintEnd_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
